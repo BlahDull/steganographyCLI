@@ -1,7 +1,6 @@
 #include "opencv2/opencv.hpp"
 #include "iostream"
 #include "bitset"
-#include "vector"
 #include "sstream"
 #include "chrono"
 #include "thread"
@@ -146,6 +145,9 @@ int main(int argc, char *argv[])
                 puts("-p This flag specifies the path of the image you either want to create, or retrieve a message from. Argument required.");
                 puts("-s This flag specifies the path of the newly created image with the embedded message. Argument required");
                 puts("-h This flag prints out information regarding the use of the program. No argument");
+                puts("");
+                puts("Example of embedding a message\n./main -e -m \"This is a top secret message\" -p \"source_image.png\" -s \"destination_image.png\"");
+                puts("Exampple of retrieving a message\n./main -d -p \"embedded_image.png\"");
                 return 0;
                 break;
             }
@@ -158,7 +160,7 @@ int main(int argc, char *argv[])
     switch (action) {
         case 1: {
             if (msg.empty() || msg.length() == 0 || msg.length() > 255) {
-                puts("Error: Message must be entered and be within 1 to 255 characters");
+                puts("Error: Message must be within 1 to 255 characters");
                 exit(-1);
             }
             if (path.empty()) {
