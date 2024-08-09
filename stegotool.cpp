@@ -242,7 +242,7 @@ bool retrieve_file_from_image(Mat img, vector<unsigned char> *bytes) {
                 break;
             }
         }
-        if (all_data_retrieved) {write_data_to_file(&getter); break;}
+        if (all_data_retrieved) {write_data_to_file(&getter); return true; break;}
     }
     return false;
 }
@@ -314,7 +314,7 @@ int main(int argc, char *argv[]) {
                 exit(-1);
             }
             imwrite(destination, img);
-            cout << "Sucess! Embedded image saved as " << destination << endl;
+            cout << "Success! Embedded image saved as " << destination << endl;
             break;
         }
         case 2: {
