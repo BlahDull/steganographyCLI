@@ -62,11 +62,11 @@ public:
         bitset<8> green = bitset<8>(pixel[1]);
         bitset<8> blue = bitset<8>(pixel[2]);
         build_byte(red[0]);
-        if (check_significant_bytes()) {return true;}
+        if (check_significant_bit()) {return true;}
         build_byte(green[0]);
-        if (check_significant_bytes()) {return true;}
+        if (check_significant_bit()) {return true;}
         build_byte(blue[0]);
-        if (check_significant_bytes()) {return true;}
+        if (check_significant_bit()) {return true;}
         return false;
     }
 
@@ -100,7 +100,7 @@ private:
         }
     }
 
-    bool check_significant_bytes() {
+    bool check_significant_bit() {
         if (bytes->size() == 1 && file_name_size_retrieved == false) {
             file_name_size = bytes->at(0);
             file_name_size_retrieved = true;
