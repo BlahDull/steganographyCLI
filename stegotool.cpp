@@ -2,7 +2,6 @@
 #include "iostream"
 #include "vector"
 #include "bitset"
-#include "sstream"
 #include "fstream"
 #include "stdlib.h"
 #include "stdio.h"
@@ -33,7 +32,7 @@ public:
 
 private:
     int current_bit = 0;
-    unsigned long current_byte = 0, total_bytes = 0;;
+    unsigned long current_byte = 0, total_bytes = 0;
     bool all_data_embedded = false;
     vector<unsigned char> *bytes = nullptr;
 
@@ -198,7 +197,7 @@ void read_bits(vector<unsigned char> *bytes, ifstream *file, string file_name) {
     for (long i = 0; i < file_size; i++) {
         bytes->push_back(buffer[i]);
     }
-    delete buffer;
+    delete[] buffer;
 }
 
 bool embed_file_into_image(Mat img, vector<unsigned char> *bytes) {
@@ -249,7 +248,7 @@ bool retrieve_file_from_image(Mat img, vector<unsigned char> *bytes) {
 
 int main(int argc, char *argv[]) {
     int flag = -1, action = -1;
-    string file_name, message, image_name, destination;
+    string file_name, image_name, destination;
     while ((flag = getopt(argc, argv, "ers:d:m:f:h")) != -1) {
         switch (flag) {
             case 'e': {
@@ -272,10 +271,6 @@ int main(int argc, char *argv[]) {
             }
             case 'f': {
                 file_name = string(optarg);
-                break;
-            }
-            case 'm': {
-                message = string(optarg);
                 break;
             }
             case 'h': {
