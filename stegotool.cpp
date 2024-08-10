@@ -61,11 +61,11 @@ public:
         bitset<8> green = bitset<8>(pixel[1]);
         bitset<8> blue = bitset<8>(pixel[2]);
         build_byte(red[0]);
-        if (check_significant_bit()) {return true;}
+        if (check_important_bytes()) {return true;}
         build_byte(green[0]);
-        if (check_significant_bit()) {return true;}
+        if (check_important_bytes()) {return true;}
         build_byte(blue[0]);
-        if (check_significant_bit()) {return true;}
+        if (check_important_bytes()) {return true;}
         return false;
     }
 
@@ -99,7 +99,7 @@ private:
         }
     }
 
-    bool check_significant_bit() {
+    bool check_important_bytes() {
         if (bytes->size() == 1 && file_name_size_retrieved == false) {
             file_name_size = bytes->at(0);
             file_name_size_retrieved = true;
@@ -296,9 +296,6 @@ int main(int argc, char *argv[]) {
     }
     switch (action) {
         case 1: {
-            if (!message.empty()) {
-
-            }
             ifstream file(file_name, ios::binary);
             if (!file) {cout << "Error: Cannot open " << file_name << endl; exit(-1);}
             vector<unsigned char> bytes;
